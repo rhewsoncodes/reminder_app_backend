@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  reminder_app:
+    container_name: reminder_app
+    image: reminder_app
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    ports:
+      - "${PORT}:${PORT}"
