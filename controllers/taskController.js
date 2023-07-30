@@ -122,7 +122,7 @@ const sendQRCodeEmail = async (req, res) => {
       from: "rhewsoncodes@gmail.com",
       to: "rhewsoncodes@gmail.com",
       subject: `Your QR Code for Task ${myTask.taskName}`,
-      html: `<img src = "${process.env.SERVERHOST_URL}:${process.env.PORT}/qrCodes/${req.params.taskId}.png"/>`,
+      html: `<img src = "http://${process.env.SERVERHOST_URL}:${process.env.PORT}/qrCodes/${req.params.taskId}.png"/>`,
       attachments: [
         {
           filename: `${req.params.taskId}.png`,
