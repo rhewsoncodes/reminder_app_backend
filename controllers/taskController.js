@@ -106,7 +106,7 @@ const sendQRCodeEmail = async (req, res) => {
     myLink = process.env.SERVERHOST_URL + "task/" + req.params.taskId;
     myTask = await Task.findOne({ _id: req.params.taskId });
     console.log(myTask);
-    myUser = await User.findOne({ _id: req.user._id });
+    myUser = await User.findOne({ _id: req.user });
     QRCode.toFile(
       `./qrCodes/${req.params.taskId}.png`,
       myLink,
