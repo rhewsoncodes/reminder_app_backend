@@ -3,14 +3,6 @@ const User = require("../model/User");
 const Task = require("../model/Task");
 baseURL = "localhost:3500/user";
 
-const Cleanup = async () => {
-  const bbb = await User.findOneAndDelete({
-    email: "thebestrequest@gmail.com",
-  }); //im so sorry
-};
-
-Cleanup();
-
 //Test to make sure conflicts are not allowed for username
 request(baseURL)
   .post("/")
@@ -88,6 +80,8 @@ request(baseURL)
     if (err) throw err;
     console.log(res.body);
   });
+
+User.findOne({ username: "goodRequest"})
 
 //Make sure is 201 when everything is fine and dandy
 request(baseURL)

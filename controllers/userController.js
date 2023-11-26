@@ -1,7 +1,6 @@
 const User = require("../model/User");
 const bcrypt = require("bcrypt");
 
-const QRCode = require("qrcodejs");
 
 const handleNewUser = async (req, res) => {
   const {

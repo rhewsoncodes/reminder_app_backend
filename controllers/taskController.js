@@ -94,7 +94,6 @@ const createNewTask = async (req, res) => {
         LastChecked: null,
       });
       console.log(result);
-
       return res.status(201).json({ success: `New Task has been created!` });
     } catch (err) {
       return res.status(500).json({ message: err.message });
@@ -107,6 +106,7 @@ const sendQRCodeEmail = async (req, res) => {
     myLink = process.env.SERVERHOST_URL + "task/" + req.params.taskId;
     myTask = await Task.findOne({ _id: req.params.taskId });
     console.log(myTask);
+    myUser = await User.findOne({ _id: req.user._id });
     QRCode.toFile(
       `./qrCodes/${req.params.taskId}.png`,
       myLink,
@@ -119,8 +119,8 @@ const sendQRCodeEmail = async (req, res) => {
       }
     );
     var mailOptions = {
-      from: "rhewsoncodes@gmail.com",
-      to: "rhewsoncodes@gmail.com",
+      from: "reminderapp45@gmail.com",
+      to: myUser.email,
       subject: `Your QR Code for Task ${myTask.taskName}`,
       html: `<img src = "http://${process.env.SERVERHOST_URL}:${process.env.PORT}/qrCodes/${req.params.taskId}.png"/>`,
       attachments: [
